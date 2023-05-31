@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<style>
+    
+    .slide-3 {
+        background-image: url(../../static/img/img_15.jpeg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    @media (max-width:768px) {
+        .stuff-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+    }
+    @media (max-width:992px) {
+        .stuff-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+    }
+    @media (max-width:542px) {
+        .stuff-list {
+            display: inline-block;
+        }
+        .stuff:first-child{
+            margin-top: -30px;
+        }
+        .stuff{
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+    }
+</style>
+
+<div class="bright">
+    <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide slide-1"></div>
+            <div class="swiper-slide slide-2"></div>
+            <div class="swiper-slide slide-3"></div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+<div class="stuff-block" id="our-menu">
+    <div class="container">
+        <h1 class="stuff-heading">Блюда на гриле</h1>
+        <div class="hidden">
+            <div class="stuff-list">
+                {% for product in products %}
+                <div class="stuff">
+                    <img src="{{ product.img.url }}" alt="">
+                    <p class="stuff-name">{{ product.title }}</p>
+                    <div class="line"></div>
+                    <h2>{{ product.price }}<i class="fa-solid fa-ruble-sign"></i></h2>
+                    <p class="stuff-description">{{ product.description }}</p>
+                    <a onclick="Success()" href="product/{{ product.id }}" class="order-btn someclass">Заказать</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="stuff-block" id="our-menu">
+    <div class="container">
+        <h1 class="stuff-heading">Салаты</h1>
+        <div class="hidden">
+            <div class="stuff-list">
+                {% for product in salats %}
+                <div class="stuff">
+                    <img src="{{ product.img.url }}" alt="">
+                    <p class="stuff-name">{{ product.title }}</p>
+                    <div class="line"></div>
+                    <h2>{{ product.price }}<i class="fa-solid fa-ruble-sign"></i></h2>
+                    <p class="stuff-description">{{ product.description }}</p>
+                    <a onclick="Success()" href="salat/{{ product.id }}" class="order-btn">Заказать</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="stuff-block" id="our-menu">
+    <div class="container">
+        <h1 class="stuff-heading">Рыба</h1>
+        <div class="hidden">
+            <div class="stuff-list">
+                {% for product in fishs %}
+                <div class="stuff">
+                    <img src="{{ product.img.url }}" alt="">
+                    <p class="stuff-name">{{ product.title }}</p>
+                    <div class="line"></div>
+                    <h2>{{ product.price }}<i class="fa-solid fa-ruble-sign"></i></h2>
+                    <p class="stuff-description">{{ product.description }}</p>
+                    <a onclick="Success()" href="fish/{{ product.id }}" class="order-btn">Заказать</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="stuff-block" id="our-menu">
+    <div class="container">
+        <h1 class="stuff-heading">Супы</h1>
+        <div class="hidden">
+            <div class="stuff-list">
+                {% for product in soup %}
+                <div class="stuff">
+                    <img src="{{ product.img.url }}" alt="">
+                    <p class="stuff-name">{{ product.title }}</p>
+                    <div class="line"></div>
+                    <h2>{{ product.price }}<i class="fa-solid fa-ruble-sign"></i></h2>
+                    <p class="stuff-description">{{ product.description }}</p>
+                    <a onclick="Success()" href="soup/{{ product.id }}" class="order-btn">Заказать</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about" id="about-us">
+    <div class="container">
+        <div class="parts-list">
+            <div class="part about-img hidden-el">
+                <img src="../../static/img/img_34.jpg">
+            </div>
+            <div class="part">
+                <div class="about-us-heading">Ресторан Мясной дом</div>
+                <p>
+                    Это сочетание Русской, кавказской и европейской кухни, традиционное русское гостеприимство и
+                    русское веселье известно во всем мире. Русские традиции богаты и разнообразны, их любят, чтят и
+                    уважают<br>
+                    <br>
+                    Ресторан «Мясной дом» всегда встречает своих гостей хлебом-солью, улыбками и радостью и балует
+                    своих гостей различными угощениями, которые по достоинству оценит каждый гость. Для самых
+                    взыскательных гурманов мы можем предложить говяжьи СТЕЙКИ различной степени прожарки, шашлыки,
+                    люля-кебаб, хинкали и многое другое<br>
+                    <br>
+                    Атмосфера ресторана способствует приятной беседе, у нас можно и спокойно отдохнуть, и
+                    повеселиться от души!
+                </p>
+
+                <div class="bron">
+                    <a style="cursor: pointer;" class="btn-order" onclick="ShowBron()">Забронировать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="bright">
+    <section class="parts hidden" id="we">
+        <div class="container">
+            <div class="parts-list">
+                <a href="{% url 'zal' %}">
+                    <div class="part">
+                        <img src="{% static 'img/img_65.jpg' %}" alt="">
+                        <div class="layer">
+                            <h2>Зал</h2>
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'ver' %}">
+                    <div class="part">
+                        <img src="{% static 'img/img_11.jpeg' %}" alt="">
+                        <div class="layer">
+                            <h2>Веранда</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    function Success(){
+        window.alert('Товар добавлен в корзину');
+    }
+
+</script>
+
+
+{% endblock content %}

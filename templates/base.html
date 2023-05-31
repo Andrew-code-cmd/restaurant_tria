@@ -1,0 +1,305 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css2? family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/671cc826ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;800&family=Poppins&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap');
+
+    @media (max-width: 1069px) {
+        .footer-heading {
+            font-size: 17px;
+        }
+
+        .address {
+            margin-right: 20px;
+        }
+    }
+
+    @media (max-width: 952px) {
+        .footer-head {
+            flex-direction: column;
+        }
+
+        .footer-head .media {
+            margin-top: 20px;
+        }
+
+        .footer {
+            height: 200px;
+        }
+
+        .footer-header {
+            margin-right: 0px;
+        }
+
+        .footer-body {
+            flex-direction: column;
+        }
+    }
+
+    .cart {
+        position: relative;
+    }
+
+    .count_of_products {
+        position: absolute;
+        z-index: 0;
+        right: 0;
+        top: 0;
+        color: #fff;
+        background-color: crimson;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        padding: 0 6px;
+    }
+
+    @media (max-width:404px) {
+        .logo h2 {
+            font-size: 18px;
+            margin-top: 8px;
+        }
+    }
+
+    @media (max-width:415px) {
+        .logo h2 {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    }
+
+    .form-box {
+        height: 530px;
+    }
+
+    .special {
+        display: flex;
+        gap: 5px;
+    }
+
+    .contacts-container {
+        padding: 0 1%;
+    }
+
+    @media (max-width: 360px) {
+        .logo h2 {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 348px) {
+        .logo h2 {
+            display: none;
+        }
+    }
+    .footer-sec{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    @media (max-width:1399px) {
+        .footer{
+            display: block;
+            position: inherit;
+            height: 170px;
+        }
+    }
+
+</style>
+
+<body class="fon">
+    {% block section %}
+    {% endblock section %}
+    <section class="form">
+        <div class="form-box">
+            <div class="form-value">
+                <form action="https://formspree.io/f/mbjezogk" method="POST">
+                    <i class="fa-solid fa-xmark exit" onclick="HideBron()"></i>
+                    <h2>Забронировать стол</h2>
+                    <div class="input-box">
+                        <input name="name" placeholder="имя" required>
+                    </div>
+                    <div class="input-box">
+                        <input name="номер телефона" placeholder="номер телефона" required>
+                    </div>
+                    <div class="input-box">
+                        <input name="дата" type="date" required>
+                    </div>
+                    <div class="input-box special">
+                        <input name="время" type="time" required>
+                        <input name="количество человек" type="number" placeholder="кол-во человек" required>
+                    </div>
+                    <button>Забронировать</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="container contacts-container">
+        <section class="contacts">
+            <div class="left-side">
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <a>Вологда</a>
+                </div>
+                <div class="number">
+                    <i class="fa-solid fa-phone"></i>
+                    <a> +7 (8172) 70-75-71</a>
+                </div>
+                <div class="time">
+                    <i class="fa-solid fa-clock"></i>
+                    <a>Сегодня с 11:00 до 22:00</a>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="login" style="font-size: 18px; font-weight: 600;">
+                    <a href="{% url 'home' %}" style="text-decoration: none; color:#545252">Мясной Дом</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="container">
+        <div class="mobile-menu">
+            <div class="mobile-head">
+                <a href="{% url 'home' %}"><img src="{% static 'img/logo (2).jpg' %}" alt=""></a>
+                <i class="fa-solid fa-xmark exit" onclick="Exit()"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/#our-menu" class="menu-item" onclick="Exit()">Меню</a></li>
+                    <li><a href="/#about-us" class="menu-item" onclick="Exit()">О нас</a></li>
+                    <li><a href="/#we" class="menu-item" onclick="Exit()">Ресторан</a></li>
+                </ul>
+            </nav>
+            <hr>
+            <div class="work-time">
+                <p>Сегодня с 11:00 до 22:00</p>
+            </div>
+        </div>
+        <div class="bright">
+            <header class="header">
+                <i class="fa-solid fa-bars menuBar" onclick="Show()"></i>
+                <a href="{% url 'home' %}"><img src="{% static 'img/logo (2).jpg' %}"></a>
+                <div class="logo">
+                    <h2><a style="text-decoration: none;color:black" href="{% url 'home' %}">Мясной дом</a></h2>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/#our-menu">Меню</a></li>
+                        <li><a href="/#about-us">О нас</a></li>
+                        <li><a href="/#we">Ресторан</a></li>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="left-side-header">
+                    <a style="cursor: pointer;" class="btn-order" onclick="ShowBron()">Забронировать</a>
+                    <div class="cart">
+                        <a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i>
+                            <p class="count_of_products">{{ cart_amount }}</p>
+                        </a>
+
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    {% block content %}{% endblock content %}
+
+    {% block footer %}
+        <section class="footer" style="background-color: #654538;">
+            <div class="footer-container">
+                <div class="footer-head">
+                    <div class="footer-header">
+                        <div class="footer-logo"><img src=""></div>
+                        <a href="{% url 'home' %}" style="text-decoration: none;">
+                            <h2 class="footer-heading">ТРИА Вологда</h2>
+                        </a>
+                    </div>
+                    <div class="footer-body">
+                        <a href="https://yandex.ru/maps/org/tria/1887356596/?ll=39.854799%2C59.186913&z=16.26"
+                            class="address">ул. Пошехонское шоссе, д.37</a>
+                        <a href="#" class="footer-number">+7 (8172) 70-75-71</a>
+                    </div>
+                    <div class="media">
+                        <a href="https://vk.com/hotel_tria"><i class="fa-brands fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock footer %}
+
+    <script>
+        const swiper = new Swiper('.swiper', {
+            speed: 2000,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                speed: 2500,
+            },
+            // Optional parameters
+            loop: true,
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            keyboard: true,
+        });
+
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            })
+        })
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        const hiddenElems = document.querySelectorAll('.hidden-el');
+        hiddenElements.forEach((el) => observer.observe(el));
+        hiddenElems.forEach((el) => observer.observe(el));
+
+        var menu = document.querySelector(".menuBar");
+        var bar = document.querySelector(".mobile-menu");
+        var bodyTag = document.querySelector(".fon");
+        function Show() {
+            bar.style.left = "0px";
+            bodyTag.style.overflow = 'hidden';
+        }
+        function Exit() {
+            bar.style.left = "-250px";
+            bodyTag.style.overflow = 'visible';
+        }
+
+        var form = document.querySelector(".form");
+
+        function HideBron() {
+            form.style.display = 'none';
+        }
+
+        function ShowBron() {
+            form.style.display = 'flex';
+        }
+    </script>
+</body>
+
+</html>

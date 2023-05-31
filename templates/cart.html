@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block section %}
+
+<section class="form-order">
+    <div class="form-box-order" style="height: 470px; width: 500px;">
+        <div class="form-value">
+            <form action="https://formspree.io/f/mbjezogk" method="POST">
+                <i class="fa-solid fa-xmark exit" onclick="HideOrder()"></i>
+                <h2>Оформить заказ</h2>
+                <div class="input-box">
+                    <input placeholder="номер телефона" name="number" type="number" required>
+                </div>
+                <div class="input-box">
+                    <input placeholder="улица" name="address" type="text" required>
+                </div>
+                <div class="input-box special">
+                    <input placeholder="подъезд" name="entrance" type="text" required>
+                    <input placeholder="квартира" name="flat" type="text" required>
+                </div>
+                <input name="details" type="hidden" value="{{ order_detail }}" required>
+                <a href="{% url 'order' %}"><button class="btn-order"
+                        style="color: #fff; border: none;">Заказать</button></a>
+            </form>
+            <p class="order-text" style="position: absolute; left: 5%; bottom: -3%;">*После отправки данных вам перезвонят на указанный номер</p>
+        </div>
+    </div>
+</section>
+
+{% endblock section %}
+
+{% block content %}
+
+<style>
+    .cart-stuff {
+        justify-content: space-between;
+        margin-bottom: 30px;
+    }
+
+    .cart-stuff-count {
+        margin-right: 60px;
+    }
+
+    .cart-stuff-count p {
+        background-color: rgb(212, 63, 63);
+        color: #fff;
+        width: 37px;
+        height: 37px;
+        padding: 4px 14.5px;
+        font-size: 20px;
+    }
+
+    .cart-stuff-count button {
+        width: 35px;
+        border: 1px;
+        height: 37px;
+    }
+
+    .cart-stuff-price {
+        font-size: 27px;
+    }
+
+    .delete-stuff {
+        margin-left: 30px;
+        font-size: 24px;
+        color: rgb(212, 63, 63);
+    }
+
+    .cart-detail-heading {
+        font-size: 44px;
+        font-weight: 600;
+        margin-left: 70px;
+        margin-bottom: 30px;
+    }
+
+    .count {
+        box-shadow: 5px 3px 5px 2px rgba(0, 0, 0, 0.5);
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .cart-stuff {
+        display: flex;
+        align-items: center;
+    }
+
+    .cart-stuff-count {
+        display: flex;
+    }
+
+    .cart-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .count-heading {
+        font-size: 24px;
+    }
+
+    .cart-stuff-heading {
+        font-size: 28px;
+        margin-left: 70px;
+    }
+
+    .h_pop {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sidr {
+        display: flex;
+        justify-content: center;
+        padding-top: 30px;
+        gap: 45px;
+    }
+
+    .sidr input {
+        width: 355px;
+        height: 35px;
+    }
+
+    .knopka {
+        padding-top: 30px;
+        padding-bottom: 80px;
+    }
+
+    .personal-heading {
+        padding-bottom: 20px;
+        padding-right: 30px;
+    }
+
+    .h_boom {
+        display: flex;
+        justify-content: center;
+        padding-top: 50px;
+    }
+
+    .sidr_1 input {
+        border-radius: 18px;
+        border: 1px solid #979797;
+        padding: 0 10px;
+    }
+
+    .sid_no input {
+        width: 100%;
+        height: 35px;
+    }
+
+    .knopka_1 {
+        padding-bottom: 80px;
+    }
+
+    .knopka_1 input {
+        margin-top: 30px;
+        border-radius: 9px;
+        width: 25%;
+    }
+
+    .knop {
+        display: flex;
+        margin-top: 30px;
+    }
+
+    .lnop_1 button {
+        width: 25%;
+    }
+
+    @media (max-width: 992px) {
+        .cart-left .delete-stuff {
+            display: none;
+        }
+
+        .cart-left {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .cart-stuff-price {
+            margin-right: 60px;
+        }
+    }
+
+    .cart-stuff-count a {
+        width: 35px;
+        border: 1px;
+        height: 37px;
+        background-color: #ecebeb;
+        padding: 6px 12px;
+        text-decoration: none;
+        color: #000
+    }
+
+    .form-order {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100%;
+        position: fixed;
+        z-index: 100;
+        backdrop-filter: brightness(65%) blur(5px);
+        transition: .5s;
+    }
+
+    .form-box-order {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+    }
+
+    @media (max-width: 412px) {
+        .cart-stuff-heading {
+            font-size: 20px;
+        }
+
+        .catalog {
+            display: none;
+        }
+    }
+
+    @media(max-width:380px) {
+        .count-heading {
+            font-size: 20px;
+            margin-top: 6px;
+        }
+
+        .fa-ruble-sign {
+            font-size: 18px;
+        }
+
+        .cart-detail .container {
+            padding: 0 0%;
+        }
+    }
+
+    .count-container {
+        padding: 15px 17%;
+    }
+
+    @media(max-width:942px) {
+        .count-container {
+            padding: 15px 7%;
+        }
+        .cart-detail-heading{
+            font-size: 36px;
+        }
+    }
+
+    @media(max-width:440px) {
+        .count-container {
+            padding: 15px 3%;
+        }
+        .count-heading {
+            margin-left: 40px;
+        }
+    }
+
+    @media(max-width:393px) {
+        .count-container {
+            padding: 15px 0%;
+        }
+    }
+</style>
+
+<section class="cart-detail">
+    <div class="container">
+        <h1 class="cart-detail-heading">Корзина</h1>
+        {% if products %}
+        {% for product in products %}
+        <div class="cart-stuff">
+            <p class="cart-stuff-heading">{{ product.title }}</p>
+            <div class="cart-left">
+                <div class="cart-stuff-count">
+                    <a href="/product_delete_one/{{ product.id }}">-</a>
+                    <p>{{ product.count }}</p>
+                    <a href="/product_add_one/{{ product.id }}">+</a>
+                </div>
+                <div class="cart-stuff-price">{{ product.price }}<i class="fa-solid fa-ruble-sign"></i></div>
+                <a href="/product_delete/{{ product.id }}"><i class="fa-solid fa-xmark delete-stuff"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="cart-stuff">
+            <p class="cart-stuff-heading">Ваша корзина пуста</p>
+            <a href="{% url 'home' %}" class="btn-order catalog">В каталог</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+<section class="count hidden">
+    <div class="count-container h_pop">
+        <h3 class="count-heading">К оплате: {{ amount }}<i class="fa-solid fa-ruble-sign"></i></h3>
+        <a onclick="ShowOrder()"><button class="btn-order" style="color: #fff; border: none;"> Оплатить</button></a>
+    </div>
+</section>
+
+
+
+{% block footer %}
+{% endblock footer %}
+
+<script>
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            } else {
+                entry.target.classList.remove('show');
+            }
+        })
+    })
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    const hiddenElems = document.querySelectorAll('.hidden-el');
+    hiddenElements.forEach((el) => observer.observe(el));
+    hiddenElems.forEach((el) => observer.observe(el));
+
+    var menu = document.querySelector(".menuBar");
+    var bar = document.querySelector(".mobile-menu");
+    var bodyTag = document.querySelector(".fon");
+    function Show() {
+        bar.style.left = "0px";
+        bodyTag.style.overflow = 'hidden';
+    }
+    function Exit() {
+        bar.style.left = "-250px";
+        bodyTag.style.overflow = 'visible';
+    }
+
+    var form = document.querySelector(".form");
+    var formOrder = document.querySelector(".form-order");
+    function HideBron() {
+        form.style.display = 'none';
+    }
+    function HideOrder() {
+        formOrder.style.display = 'none';
+    }
+
+
+    function ShowBron() {
+        form.style.display = 'flex';
+    }
+    function ShowOrder() {
+        formOrder.style.display = 'flex';
+    }
+
+    var item = document.querySelector('.cart-stuff');
+    function deleteStuff() {
+        item.style.display = 'none';
+    }
+
+
+</script>
+
+{% endblock content %}

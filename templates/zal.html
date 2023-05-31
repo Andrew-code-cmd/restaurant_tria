@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<style>
+    
+    .foto {
+        width: 100%;
+        height: 80vh;
+        background-image: url(../../static/img/img_81.jpg);
+    }
+
+    .foto img {
+        width: 100%;
+        height: 100%;
+        background-position: bottom;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .photo-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-gap: 40px;
+        margin: 50px 0;
+
+    }
+
+    .photo {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .photo img {
+        width: 100%;
+        display: block;
+    }
+
+    @media (max-width: 952px) {
+        .footer-head {
+            flex-direction: column;
+        }
+
+        .footer-head .media {
+            margin-top: 20px;
+        }
+
+        .footer {
+            height: 250px;
+        }
+
+        .footer-header {
+            margin-right: 50px;
+        }
+
+        .footer-body {
+            flex-direction: column;
+        }
+    }
+
+    .about-us-heading{
+        font-size: 24px;
+    }
+    .footer {
+        display: none;
+    }
+</style>
+
+{% block content %}
+
+<div class="about-us-heading" style="font-size: 42px; font-weight: 500;">Зал</div>
+
+<div class="stuff-block" id="our-menu">
+    <div class="container">
+        <div class="hidden">
+            <div class="parts-list" style="margin-top: -20px;">
+                <div class="part">
+                    <img src="{% static 'img/img_82.jpg' %}" alt="">
+                </div>
+                <div class="part">
+                    <img src="{% static 'img/img_81.jpg' %}" alt="">
+                </div>
+                <div class="part">
+                    <img src="{% static 'img/img_60.jpg' %}" alt="">
+                </div>
+                <div class="part">
+                    <img src="{% static 'img/img_500.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+{% endblock content %}
+
+{% block footer %}
+<section class="footer footer-sec" style="background-color: #654538;">
+    <div class="footer-container">
+        <div class="footer-head">
+            <div class="footer-header">
+                <div class="footer-logo"><img src=""></div>
+                <a href="{% url 'home' %}" style="text-decoration: none;">
+                    <h2 class="footer-heading">ТРИА Вологда</h2>
+                </a>
+            </div>
+            <div class="footer-body">
+                <a href="https://yandex.ru/maps/org/tria/1887356596/?ll=39.854799%2C59.186913&z=16.26"
+                    class="address">ул. Пошехонское шоссе, д.37</a>
+                <a href="#" class="footer-number">+7 (8172) 70-75-71</a>
+            </div>
+            <div class="media">
+                <a href="https://vk.com/hotel_tria"><i class="fa-brands fa-vk"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock footer %}
